@@ -43,7 +43,6 @@ IFS='|' read -r PERSONA_NAME TRIGGER_WORD TRAIN_DATA_PATH <<< "$PERSONA_INFO"
 
 # Paths
 BASE_MODEL="${MODELS_DIR}/checkpoints/sd_xl_base_1.0.safetensors"
-TRAIN_DATA="${TRAIN_DATA_PATH}/processed"
 OUTPUT_DIR="${OUTPUTS_DIR}/${PERSONA_ID}_lora_$(date +%Y%m%d_%H%M%S)"
 CONFIG_FILE="${PROJECT_ROOT}/configs/${PERSONA_ID}_lora_config.toml"
 
@@ -53,9 +52,9 @@ if [ ! -f "$BASE_MODEL" ]; then
     exit 1
 fi
 
-if [ ! -d "$TRAIN_DATA" ] || [ -z "$(ls -A "$TRAIN_DATA" 2>/dev/null)" ]; then
-    echo "Error: No training data found in ${TRAIN_DATA}"
-    echo "Please add your persona images to ${TRAINING_DATA_DIR}/raw"
+if [ ! -d "$TRAIN_DATA_PATH" ] || [ -z "$(ls -A "$TRAIN_DATA_PATH"/10_* 2>/dev/null)" ]; then
+    echo "Error: No training data found in ${TRAIN_DATA_PATH}"
+    echo "Please prepare your training data first"
     exit 1
 fi
 
@@ -72,17 +71,18 @@ network_dim = 64
 network_alpha = 32
 
 [optimizer_arguments]
-optimizer_type = "AdamW8bit"
+optimizer_type = "AdamW"
 learning_rate = ${LEARNING_RATE}
 lr_scheduler = "cosine_with_restarts"
 lr_warmup_steps = 500
 
 [dataset_arguments]
-train_data_dir = "${TRAIN_DATA}"
+train_data_dir = "${TRAIN_DATA_PATH}"
 resolution = "1024,1024"
 batch_size = ${BATCH_SIZE}
 caption_extension = ".txt"
 keep_tokens = 1
+enable_bucket = true
 
 [training_arguments]
 output_dir = "${OUTPUT_DIR}"
@@ -91,7 +91,7 @@ save_model_as = "safetensors"
 save_every_n_epochs = 5
 max_train_steps = ${TRAIN_STEPS}
 gradient_checkpointing = true
-mixed_precision = "bf16"
+mixed_precision = "no"
 xformers = false
 clip_skip = 1
 seed = 42
@@ -115,7 +115,7 @@ echo ""
 
 # Run training
 cd "${SD_SCRIPTS_DIR}"
-accelerate launch --mixed_precision bf16 train_network.py \
+accelerate launch sdxl_train_network.py \
     --config_file "$CONFIG_FILE" \
     --enable_bucket \
     --min_bucket_reso 256 \

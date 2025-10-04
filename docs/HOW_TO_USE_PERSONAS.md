@@ -61,6 +61,26 @@ This will:
 - Create caption files with trigger word
 - Save processed images to `training_data/persona-john_doe/processed/`
 
+### Generate Detailed Captions (Recommended)
+For better training results, generate descriptive captions using AI:
+
+```bash
+# Basic detailed captions
+python scripts/generate_captions.py --persona-id persona-john_doe --mode detailed
+
+# With quality modifiers
+python scripts/generate_captions.py --persona-id persona-john_doe --mode detailed \
+  --suffix "professional photography, highly detailed"
+
+# Generate multiple variations per image
+python scripts/generate_captions.py --persona-id persona-john_doe --mode variations
+```
+
+Caption modes:
+- **simple**: Just the trigger word (basic)
+- **detailed**: AI-generated descriptions (recommended)
+- **variations**: Multiple captions per image (advanced)
+
 ## 3. Training Your Persona
 
 ### Start Training
@@ -102,8 +122,10 @@ python persona_gen.py create-workflow --persona-id persona-john_doe --type image
 ```
 
 2. In ComfyUI:
-   - Click "Load" in the menu
-   - Select `workflows/persona-john_doe_image_workflow.json`
+   - Click "Workflows" in the left sidebar
+   - Your persona workflows will appear in the list automatically
+   - Click on the workflow name to load it
+   - Or use "Load" → select from `workflows/` directory
    - The workflow is pre-configured with your persona
 
 3. Edit the positive prompt to include your trigger word:

@@ -37,74 +37,147 @@ class PersonaGenerator:
         lora_file = persona['lora_file']
         
         if workflow_type == "image":
+            # Create UI workflow format with proper node structure
             workflow = {
-                "1": {
-                    "class_type": "CheckpointLoaderSimple",
-                    "inputs": {
-                        "ckpt_name": "sd_xl_base_1.0.safetensors"
+                "last_node_id": 8,
+                "last_link_id": 8,
+                "nodes": [
+                    {
+                        "id": 1,
+                        "type": "CheckpointLoaderSimple",
+                        "pos": [50, 50],
+                        "size": [315, 98],
+                        "flags": {},
+                        "order": 0,
+                        "mode": 0,
+                        "outputs": [
+                            {"name": "MODEL", "type": "MODEL", "links": [1], "slot_index": 0},
+                            {"name": "CLIP", "type": "CLIP", "links": [2], "slot_index": 1},
+                            {"name": "VAE", "type": "VAE", "links": [8], "slot_index": 2}
+                        ],
+                        "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+                        "widgets_values": ["sd_xl_base_1.0.safetensors"]
+                    },
+                    {
+                        "id": 2,
+                        "type": "LoraLoader", 
+                        "pos": [400, 50],
+                        "size": [315, 126],
+                        "flags": {},
+                        "order": 1,
+                        "mode": 0,
+                        "inputs": [
+                            {"name": "model", "type": "MODEL", "link": 1},
+                            {"name": "clip", "type": "CLIP", "link": 2}
+                        ],
+                        "outputs": [
+                            {"name": "MODEL", "type": "MODEL", "links": [3], "slot_index": 0},
+                            {"name": "CLIP", "type": "CLIP", "links": [4, 5], "slot_index": 1}
+                        ],
+                        "properties": {"Node name for S&R": "LoraLoader"},
+                        "widgets_values": ["persona-saramillie.safetensors", 0.8, 0.8]
+                    },
+                    {
+                        "id": 3,
+                        "type": "CLIPTextEncode",
+                        "pos": [750, 50],
+                        "size": [400, 200],
+                        "flags": {},
+                        "order": 2,
+                        "mode": 0,
+                        "inputs": [{"name": "clip", "type": "CLIP", "link": 4}],
+                        "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [6], "slot_index": 0}],
+                        "properties": {"Node name for S&R": "CLIPTextEncode"},
+                        "widgets_values": [f"masterpiece, best quality, ultra-detailed, {trigger_word}, portrait, professional photography"]
+                    },
+                    {
+                        "id": 4,
+                        "type": "CLIPTextEncode",
+                        "pos": [750, 300],
+                        "size": [400, 200],
+                        "flags": {},
+                        "order": 3,
+                        "mode": 0,
+                        "inputs": [{"name": "clip", "type": "CLIP", "link": 5}],
+                        "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [7], "slot_index": 0}],
+                        "properties": {"Node name for S&R": "CLIPTextEncode"},
+                        "widgets_values": ["low quality, bad anatomy, blurry, distorted"]
+                    },
+                    {
+                        "id": 5,
+                        "type": "EmptyLatentImage",
+                        "pos": [400, 300],
+                        "size": [315, 106],
+                        "flags": {},
+                        "order": 4,
+                        "mode": 0,
+                        "outputs": [{"name": "LATENT", "type": "LATENT", "links": [9], "slot_index": 0}],
+                        "properties": {"Node name for S&R": "EmptyLatentImage"},
+                        "widgets_values": [1024, 1024, 1]
+                    },
+                    {
+                        "id": 6,
+                        "type": "KSampler",
+                        "pos": [1200, 50],
+                        "size": [315, 262],
+                        "flags": {},
+                        "order": 5,
+                        "mode": 0,
+                        "inputs": [
+                            {"name": "model", "type": "MODEL", "link": 3},
+                            {"name": "positive", "type": "CONDITIONING", "link": 6},
+                            {"name": "negative", "type": "CONDITIONING", "link": 7},
+                            {"name": "latent_image", "type": "LATENT", "link": 9}
+                        ],
+                        "outputs": [{"name": "LATENT", "type": "LATENT", "links": [10], "slot_index": 0}],
+                        "properties": {"Node name for S&R": "KSampler"},
+                        "widgets_values": [42, "randomize", 30, 7.5, "euler", "normal", 1.0]
+                    },
+                    {
+                        "id": 7,
+                        "type": "VAEDecode",
+                        "pos": [1550, 50],
+                        "size": [210, 46],
+                        "flags": {},
+                        "order": 6,
+                        "mode": 0,
+                        "inputs": [
+                            {"name": "samples", "type": "LATENT", "link": 10},
+                            {"name": "vae", "type": "VAE", "link": 8}
+                        ],
+                        "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [11], "slot_index": 0}],
+                        "properties": {"Node name for S&R": "VAEDecode"}
+                    },
+                    {
+                        "id": 8,
+                        "type": "SaveImage",
+                        "pos": [1800, 50],
+                        "size": [315, 270],
+                        "flags": {},
+                        "order": 7,
+                        "mode": 0,
+                        "inputs": [{"name": "images", "type": "IMAGE", "link": 11}],
+                        "properties": {"Node name for S&R": "SaveImage"},
+                        "widgets_values": [f"{persona_id}_output"]
                     }
-                },
-                "2": {
-                    "class_type": "LoraLoader",
-                    "inputs": {
-                        "lora_name": lora_file,
-                        "strength_model": 0.8,
-                        "strength_clip": 0.8,
-                        "model": ["1", 0],
-                        "clip": ["1", 1]
-                    }
-                },
-                "3": {
-                    "class_type": "CLIPTextEncode",
-                    "inputs": {
-                        "text": f"masterpiece, best quality, ultra-detailed, {trigger_word}, portrait, professional photography",
-                        "clip": ["2", 1]
-                    }
-                },
-                "4": {
-                    "class_type": "CLIPTextEncode",
-                    "inputs": {
-                        "text": "low quality, bad anatomy, blurry, distorted",
-                        "clip": ["2", 1]
-                    }
-                },
-                "5": {
-                    "class_type": "KSampler",
-                    "inputs": {
-                        "seed": 42,
-                        "steps": 30,
-                        "cfg": 7.5,
-                        "sampler_name": "euler_a",
-                        "scheduler": "normal",
-                        "denoise": 1.0,
-                        "model": ["2", 0],
-                        "positive": ["3", 0],
-                        "negative": ["4", 0],
-                        "latent_image": ["6", 0]
-                    }
-                },
-                "6": {
-                    "class_type": "EmptyLatentImage",
-                    "inputs": {
-                        "width": 1024,
-                        "height": 1024,
-                        "batch_size": 1
-                    }
-                },
-                "7": {
-                    "class_type": "VAEDecode",
-                    "inputs": {
-                        "samples": ["5", 0],
-                        "vae": ["1", 2]
-                    }
-                },
-                "8": {
-                    "class_type": "SaveImage",
-                    "inputs": {
-                        "filename_prefix": f"{persona_id}_output",
-                        "images": ["7", 0]
-                    }
-                }
+                ],
+                "links": [
+                    [1, 1, 0, 2, 0, "MODEL"],
+                    [2, 1, 1, 2, 1, "CLIP"], 
+                    [3, 2, 0, 6, 0, "MODEL"],
+                    [4, 2, 1, 3, 0, "CLIP"],
+                    [5, 2, 1, 4, 0, "CLIP"],
+                    [6, 3, 0, 6, 1, "CONDITIONING"],
+                    [7, 4, 0, 6, 2, "CONDITIONING"],
+                    [8, 1, 2, 7, 1, "VAE"],
+                    [9, 5, 0, 6, 3, "LATENT"],
+                    [10, 6, 0, 7, 0, "LATENT"],
+                    [11, 7, 0, 8, 0, "IMAGE"]
+                ],
+                "groups": [],
+                "config": {},
+                "extra": {},
+                "version": 0.4
             }
         else:  # video workflow
             workflow = self._create_video_workflow(persona_id, trigger_word, lora_file)
@@ -199,8 +272,44 @@ class PersonaGenerator:
         workflow_file = self.workflows_dir / f"{name}.json"
         with open(workflow_file, 'w') as f:
             json.dump(workflow, f, indent=2)
+        
+        # Also save to ComfyUI workflows directory if it exists
+        comfyui_workflow_dir = self.project_root / "ComfyUI" / "user" / "default" / "workflows"
+        if comfyui_workflow_dir.exists():
+            comfyui_workflow_file = comfyui_workflow_dir / f"{name}.json"
+            with open(comfyui_workflow_file, 'w') as f:
+                json.dump(workflow, f, indent=2)
+            console.print(f"[green]✓ Workflow also saved to ComfyUI[/green]")
+            
+            # Auto-sync models to ComfyUI
+            self._sync_models_to_comfyui()
+        
         console.print(f"[green]Workflow saved to: {workflow_file}[/green]")
         return workflow_file
+    
+    def _sync_models_to_comfyui(self):
+        """Sync models from our models directory to ComfyUI's models directory"""
+        import shutil
+        
+        comfyui_models = self.project_root / "ComfyUI" / "models"
+        if not comfyui_models.exists():
+            return
+            
+        # Sync checkpoints
+        if (self.models_dir / "checkpoints").exists():
+            checkpoint_files = list((self.models_dir / "checkpoints").glob("*.safetensors"))
+            for file in checkpoint_files:
+                dest = comfyui_models / "checkpoints" / file.name
+                if not dest.exists():
+                    shutil.copy2(file, dest)
+        
+        # Sync LoRAs
+        if (self.models_dir / "loras").exists():
+            lora_files = list((self.models_dir / "loras").glob("*.safetensors"))
+            for file in lora_files:
+                dest = comfyui_models / "loras" / file.name
+                if not dest.exists():
+                    shutil.copy2(file, dest)
 
 @click.group()
 def cli():

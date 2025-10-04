@@ -22,14 +22,73 @@ python scripts/persona_manager.py add --name "John Doe"
 # 5. Prepare training data
 python scripts/prepare_training_data.py --persona-id persona-john_doe
 
-# 6. Train LoRA
+# 6. (Optional but Recommended) Generate detailed captions
+python scripts/generate_captions.py --persona-id persona-john_doe --mode detailed
+
+# 7. Train LoRA
 ./scripts/train_lora.sh persona-john_doe
 
-# 7. Start ComfyUI
+# 8. Start ComfyUI
 ./scripts/run_comfyui.sh
+# Your workflows will appear in ComfyUI's workflow browser automatically
+
+# If you encounter workflow validation errors, restart ComfyUI:
+./scripts/restart_comfyui.sh
 ```
 
 📚 **[See the complete How to Use Personas guide](docs/HOW_TO_USE_PERSONAS.md)** for detailed instructions on using your trained personas.
+
+## 🎯 Improving Persona Quality
+
+For more realistic and detailed persona generation:
+
+```bash
+# Quick improvement setup
+./scripts/quick_improve_persona.sh persona-john_doe
+
+# Retrain with optimized settings  
+./scripts/train_lora_with_config.sh configs/persona-john_doe_optimized_config.toml
+
+# Test different LoRA strengths
+python scripts/test_lora_strengths.py --persona-id persona-john_doe
+```
+
+📖 **[See the Persona Quality Improvement guide](docs/IMPROVING_PERSONA_QUALITY.md)** for advanced techniques.
+
+## 🎛️ Master Validation Workflow (Recommended)
+
+**One workflow with complete UI control** for maximum photorealism:
+
+```bash
+# Complete setup - creates master workflow with all controls
+./scripts/setup_master_validation.sh persona-john_doe
+```
+
+**🎯 Master Workflow Features:**
+- **Single workflow** with 4 different generation methods
+- **All controls accessible** directly in ComfyUI interface
+- **8 output versions** (4 original + 4 upscaled) for comparison
+- **Enable/disable methods** by setting steps=1 or normal steps
+- **Adjustable LoRA strength**, prompts, sampling settings
+- **Professional photography simulation** with upscaling
+
+## 🔍 Individual Validation Tools
+
+For advanced users who want separate workflows:
+
+```bash
+# Setup validation models (upscaling for detail)  
+./scripts/setup_validation_models.sh
+
+# Create photorealistic validation workflow
+python scripts/create_simple_validation_workflow.py --persona-id persona-john_doe
+
+# Create advanced validation (3 methods comparison)
+python scripts/create_advanced_validation_workflow.py --persona-id persona-john_doe
+
+# Test multiple LoRA strengths for optimal realism
+python scripts/test_lora_strengths.py --persona-id persona-john_doe --strengths "0.6,0.65,0.7"
+```
 
 ## Managing Multiple Personas
 
@@ -96,15 +155,30 @@ persona/
 │   ├── download_models.sh
 │   ├── train_lora.sh
 │   ├── prepare_training_data.py
-│   ├── persona_manager.py  # Persona management
+│   ├── generate_captions.py      # AI caption generation
+│   ├── persona_manager.py        # Persona management
+│   ├── sync_workflows.sh         # Sync workflows to ComfyUI
+│   ├── restart_comfyui.sh        # Restart ComfyUI (clears cache)
+│   ├── quick_improve_persona.sh  # Quality improvement setup
+│   ├── train_lora_with_config.sh # Train with custom config
+│   ├── test_lora_strengths.py    # Test different LoRA strengths
+│   ├── create_optimized_config.py # Generate optimized training configs
+│   ├── setup_validation_models.sh # Download upscaling models
+│   ├── setup_master_validation.sh # 🎛️ Complete validation setup
+│   ├── create_ui_controlled_workflow.py # Master workflow with UI controls
+│   ├── create_simple_validation_workflow.py # Basic validation workflow
+│   ├── create_advanced_validation_workflow.py # Advanced validation workflow
 │   └── run_comfyui.sh
 ├── training_data/          # Training images by persona
 │   ├── persona-alice_smith/
 │   │   ├── raw/           # Original images
 │   │   └── processed/     # Processed for training
 │   └── persona-bob_johnson/
-│       ├── raw/
-│       └── processed/
+├── docs/                   # Documentation
+│   ├── HOW_TO_USE_PERSONAS.md      # Complete usage guide
+│   ├── IMPROVING_PERSONA_QUALITY.md # Quality optimization guide
+│   ├── MASTER_WORKFLOW_GUIDE.md    # UI master workflow controls
+│   └── MULTI_PERSONA_GUIDE.md      # Multi-persona techniques
 ├── models/                 # Model storage
 │   ├── checkpoints/       # SDXL models
 │   ├── loras/            # Trained LoRAs

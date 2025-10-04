@@ -128,6 +128,20 @@ def prepare_data(persona_id, target_size, caption_template):
         f.write(f"Total images: {processed}\n")
         f.write(f"Image size: {target_size}x{target_size}\n")
         f.write(f"Caption: {caption_template}\n")
+    
+    # Create kohya_ss directory structure
+    kohya_dir = input_path.parent / f"10_{trigger_word.replace('persona-', '')}"
+    kohya_dir.mkdir(exist_ok=True)
+    
+    # Copy all processed files to kohya directory
+    import shutil
+    for img_file in output_path.glob("*.png"):
+        shutil.copy2(img_file, kohya_dir / img_file.name)
+        caption_file = img_file.with_suffix('.txt')
+        if caption_file.exists():
+            shutil.copy2(caption_file, kohya_dir / caption_file.name)
+    
+    console.print(f"[green]Also created kohya_ss training directory: {kohya_dir}[/green]")
 
 if __name__ == '__main__':
     prepare_data()

@@ -200,6 +200,7 @@ class PersonaManager:
             }
         }
         
+        # ComfyUI workflows are just the nodes at root level - no metadata needed
         return workflow
 
 @click.group()
@@ -221,6 +222,21 @@ def add(name, description, trigger_word):
         console.print(f"[green]✓ Created persona: {persona_id}[/green]")
         console.print(f"[blue]Training data directory: training_data/{persona_id}/raw/[/blue]")
         console.print(f"[yellow]Add 20-30 images to the raw directory before training[/yellow]")
+    except ValueError as e:
+        console.print(f"[red]Error: {e}[/red]")
+
+@cli.command()
+@click.argument('persona-id')
+@click.option('--lora-file', required=True, help='Path to the trained LoRA file')
+def mark_trained(persona_id, lora_file):
+    """Mark a persona as trained with the LoRA file location"""
+    project_root = Path(__file__).parent.parent
+    manager = PersonaManager(project_root)
+    
+    try:
+        manager.mark_trained(persona_id, lora_file)
+        console.print(f"[green]✓ Marked {persona_id} as trained[/green]")
+        console.print(f"[blue]LoRA file: {lora_file}[/blue]")
     except ValueError as e:
         console.print(f"[red]Error: {e}[/red]")
 

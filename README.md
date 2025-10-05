@@ -2,7 +2,7 @@
 
 🎭 **persona generation system** for M4 Mac with ComfyUI, LoRA training, and comprehensive validation. Create realistic digital personas with unique trigger words that can be combined in scenes.
 
-## 🚀 Complete Installation Guide (From Git Pull)
+## 🚀 Complete Installation Guide
 
 ### Prerequisites
 - **Apple Silicon Mac** (M1/M2/M3/M4)

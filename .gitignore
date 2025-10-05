@@ -1,0 +1,106 @@
+# Virtual Environment
+venv/
+env/
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Models (large files)
+models/
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.bin
+*.h5
+*.onnx
+
+# Training Data & Personas
+training_data/
+outputs/
+logs/
+personas/
+persona_data/
+*_lora/
+*_training/
+*.caption
+*.txt
+!requirements.txt
+!README*.txt
+
+# ComfyUI & Dependencies
+ComfyUI/
+sd-scripts/
+custom_nodes/
+
+# Generated files
+*.mp4
+*.avi
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+!docs/*.png
+!docs/*.jpg
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.lock
+node_modules/
+
+# Logs
+*.log
+wandb/
+tensorboard/
+runs/
+checkpoints/
+lightning_logs/
+
+# Config overrides
+configs/local/
+configs/personal/
+
+# User-specific files
+workspace.code-workspace
+*.local
+.history/
+personas.json
+trained_personas.json
+
+# OS files
+Thumbs.db
+.Spotlight-V100
+.Trashes
+._*
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z

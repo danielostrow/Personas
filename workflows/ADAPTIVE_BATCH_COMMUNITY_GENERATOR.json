@@ -1,0 +1,3752 @@
+{
+  "last_node_id": 800,
+  "last_link_id": 600,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        50,
+        50
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 300,
+      "type": "Load Image Batch",
+      "pos": [
+        50,
+        200
+      ],
+      "size": [
+        400,
+        400
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            300
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "FILENAME_TEXT",
+          "type": "STRING",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Load Image Batch"
+      },
+      "widgets_values": [
+        "reference_images/persona1/",
+        "image",
+        0,
+        "Batch"
+      ]
+    },
+    {
+      "id": 301,
+      "type": "Load Image Batch",
+      "pos": [
+        500,
+        200
+      ],
+      "size": [
+        400,
+        400
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            301
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "FILENAME_TEXT",
+          "type": "STRING",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Load Image Batch"
+      },
+      "widgets_values": [
+        "reference_images/persona2/",
+        "image",
+        0,
+        "Batch"
+      ]
+    },
+    {
+      "id": 302,
+      "type": "Load Image Batch",
+      "pos": [
+        950,
+        200
+      ],
+      "size": [
+        400,
+        400
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            302
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "FILENAME_TEXT",
+          "type": "STRING",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Load Image Batch"
+      },
+      "widgets_values": [
+        "reference_images/persona3/",
+        "image",
+        0,
+        "Batch"
+      ]
+    },
+    {
+      "id": 310,
+      "type": "GetImageSize+",
+      "pos": [
+        50,
+        650
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 300
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null,
+          "slot_index": 1
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": [
+            310
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize+"
+      }
+    },
+    {
+      "id": 311,
+      "type": "GetImageSize+",
+      "pos": [
+        500,
+        650
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 301
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null,
+          "slot_index": 1
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": [
+            311
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize+"
+      }
+    },
+    {
+      "id": 312,
+      "type": "GetImageSize+",
+      "pos": [
+        950,
+        650
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 302
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null,
+          "slot_index": 1
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": [
+            312
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize+"
+      }
+    },
+    {
+      "id": 10,
+      "type": "LoraLoader",
+      "pos": [
+        400,
+        800
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            21,
+            22,
+            23
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            24,
+            25,
+            26
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "PERSONA1_LORA.safetensors",
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "id": 11,
+      "type": "LoraLoader",
+      "pos": [
+        400,
+        950
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 21
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            27,
+            28,
+            29
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            30,
+            31,
+            32
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "PERSONA2_LORA.safetensors",
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "id": 12,
+      "type": "LoraLoader",
+      "pos": [
+        400,
+        1100
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 27
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "PERSONA3_LORA.safetensors",
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "id": 13,
+      "type": "LoraLoader",
+      "pos": [400, 1250],
+      "size": [315, 126],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 33},
+        {"name": "clip", "type": "CLIP", "link": 38}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [46, 47, 48, 49, 50], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [51, 52, 53, 54, 55], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoraLoader"},
+      "widgets_values": [
+        "realistic_skin_texture.safetensors",
+        0.6,
+        0.6
+      ]
+    },
+    {
+      "id": 14,
+      "type": "LoraLoader",
+      "pos": [400, 1400],
+      "size": [315, 126],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 46},
+        {"name": "clip", "type": "CLIP", "link": 51}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [56, 57, 58, 59, 60], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [61, 62, 63, 64, 65], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoraLoader"},
+      "widgets_values": [
+        "detail_enhancer.safetensors",
+        0.4,
+        0.4
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoraLoader",
+      "pos": [400, 1550],
+      "size": [315, 126],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 56},
+        {"name": "clip", "type": "CLIP", "link": 61}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [66, 67, 68, 69, 70], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [71, 72, 73, 74, 75], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoraLoader"},
+      "widgets_values": [
+        "photorealism_helper.safetensors",
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": 320,
+      "type": "ConditioningConcat",
+      "pos": [
+        800,
+        800
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_1",
+          "type": "CONDITIONING",
+          "link": 38
+        },
+        {
+          "name": "conditioning_2",
+          "type": "CONDITIONING",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            50
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningConcat"
+      }
+    },
+    {
+      "id": 20,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        1000
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 38
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            51
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83d\udc65 SINGLE PORTRAIT: PERSONA1_TRIGGER in professional headshot, detailed facial features, natural lighting, high quality portrait photography"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        1350
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            52
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83d\udc65 DUO PORTRAIT: PERSONA1_TRIGGER and PERSONA2_TRIGGER together, professional photography, natural poses, studio lighting, both faces clearly visible"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        1700
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            53
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83d\udc65 GROUP PHOTO: PERSONA1_TRIGGER, PERSONA2_TRIGGER, and PERSONA3_TRIGGER standing together, professional group photography, natural expressions, detailed faces, studio lighting"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        2050
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            54
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83d\udcac CONVERSATION: PERSONA1_TRIGGER and PERSONA2_TRIGGER having coffee together, intimate conversation, natural expressions, candid moment, warm lighting"
+      ]
+    },
+    {
+      "id": 24,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        2400
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 42
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            55
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83c\udf33 OUTDOOR SCENE: All personas PERSONA1_TRIGGER, PERSONA2_TRIGGER, PERSONA3_TRIGGER in a park setting, lifestyle photography, natural outdoor lighting, community bonding"
+      ]
+    },
+    {
+      "id": 25,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        2750
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            56
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83d\udeb6 WALKING: PERSONA1_TRIGGER walking confidently, natural movement, cinematic motion, urban environment, dynamic camera angle"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        3100
+      ],
+      "size": [
+        500,
+        300
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            57
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "\ud83e\uddfa GROUP ACTIVITY: Multiple personas engaged in community picnic, natural interactions, multiple people in frame, lifestyle video, outdoor setting"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "CLIPTextEncode",
+      "pos": [
+        800,
+        3450
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 45
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "cartoon, anime, illustration, painting, drawing, art, sketch, rendered, cgi, 3d render, fake, artificial, plastic, doll, toy, low quality, blurry, distorted, deformed, mutation, extra limbs, bad anatomy, watermark, signature, text, logo, jpeg artifacts, compression, oversaturated, overexposed, underexposed, perfect symmetry, airbrushed, over-processed, wrong eye color, mismatched eyes, unnatural eyes, plastic skin, wax figure, mannequin, duplicate person, cloned faces, identical appearance, same person multiple times"
+      ]
+    },
+    {
+      "id": 30,
+      "type": "EmptyLatentImage",
+      "pos": [
+        50,
+        1400
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            70,
+            71,
+            72,
+            73,
+            74
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 31,
+      "type": "EmptyLatentImage",
+      "pos": [
+        50,
+        1550
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            75,
+            76
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        768,
+        16
+      ]
+    },
+    {
+      "id": 200,
+      "type": "ADE_AnimateDiffLoaderWithContext",
+      "pos": [
+        50,
+        1700
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        },
+        {
+          "name": "context_options",
+          "type": "CONTEXT_OPTIONS",
+          "links": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            80,
+            81
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ADE_AnimateDiffLoaderWithContext"
+      },
+      "widgets_values": [
+        "mm_sd_v15_v2.ckpt",
+        "sqrt_linear (AnimateDiff)",
+        1.0,
+        false
+      ]
+    },
+    {
+      "id": 40,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        1000
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 33
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 51
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 60
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 70
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            90
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        12345,
+        "fixed",
+        40,
+        6.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 41,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        1300
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 34
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 52
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 61
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 71
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            91
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        23456,
+        "fixed",
+        45,
+        5.5,
+        "dpmpp_2m_sde",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 42,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        1600
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 35
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 53
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 62
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 72
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            92
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        34567,
+        "fixed",
+        50,
+        6.5,
+        "euler",
+        "normal",
+        1.0
+      ]
+    },
+    {
+      "id": 43,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        1900
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 36
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 54
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 63
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 73
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            93
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        45678,
+        "fixed",
+        40,
+        6.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 44,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        2200
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 37
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 55
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 64
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 74
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            94
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        56789,
+        "fixed",
+        45,
+        5.5,
+        "dpmpp_2m_sde",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 201,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        2500
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 80
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 56
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 65
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 75
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            95
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        111111,
+        "fixed",
+        25,
+        7.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 202,
+      "type": "KSampler",
+      "pos": [
+        1350,
+        2800
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 81
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 57
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 66
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 76
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            96
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        222222,
+        "fixed",
+        25,
+        7.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 50,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1000
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 90
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            100,
+            110
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 51,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1100
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 91
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            101,
+            111
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 52,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1200
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 92
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            102,
+            112
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 53,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1300
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 93
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            103,
+            113
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 54,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1400
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 94
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            104,
+            114
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 203,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1500
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 95
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            105
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 204,
+      "type": "VAEDecode",
+      "pos": [
+        1700,
+        1600
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 96
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            106
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 60,
+      "type": "SaveImage",
+      "pos": [
+        1950,
+        1000
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 100
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_SINGLE_PORTRAIT"
+      ]
+    },
+    {
+      "id": 61,
+      "type": "SaveImage",
+      "pos": [
+        1950,
+        1300
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 101
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_DUO_PORTRAIT"
+      ]
+    },
+    {
+      "id": 62,
+      "type": "SaveImage",
+      "pos": [
+        1950,
+        1600
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 102
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_GROUP_PHOTO"
+      ]
+    },
+    {
+      "id": 63,
+      "type": "SaveImage",
+      "pos": [
+        1950,
+        1900
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 103
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_CONVERSATION"
+      ]
+    },
+    {
+      "id": 64,
+      "type": "SaveImage",
+      "pos": [
+        1950,
+        2200
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 104
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_OUTDOOR_SCENE"
+      ]
+    },
+    {
+      "id": 205,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1950,
+        2500
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 105
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": [
+        "ADAPTIVE_SINGLE_WALK",
+        6,
+        false,
+        "default",
+        "default",
+        false
+      ]
+    },
+    {
+      "id": 206,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1950,
+        2800
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 106
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": [
+        "ADAPTIVE_GROUP_ACTIVITY",
+        6,
+        false,
+        "default",
+        "default",
+        false
+      ]
+    },
+    {
+      "id": 100,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        2300,
+        1000
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            120,
+            121,
+            122,
+            123,
+            124
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "RealESRGAN_x4plus.pth"
+      ]
+    },
+    {
+      "id": 110,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        2300,
+        1100
+      ],
+      "size": [
+        241,
+        46
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 120
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 110
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            130
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageUpscaleWithModel"
+      }
+    },
+    {
+      "id": 150,
+      "type": "SaveImage",
+      "pos": [
+        2600,
+        1100
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 130
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ADAPTIVE_SINGLE_PORTRAIT_4X"
+      ]
+    },
+    {
+      "id": 500,
+      "type": "Image Crop Face",
+      "pos": [2300, 1700],
+      "size": [315, 126],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 100}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [500], "slot_index": 0},
+        {"name": "x", "type": "INT", "links": null},
+        {"name": "y", "type": "INT", "links": null},
+        {"name": "width", "type": "INT", "links": null},
+        {"name": "height", "type": "INT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "Image Crop Face"},
+      "widgets_values": [1.5, 0.5, "center", true]
+    },
+    {
+      "id": 501,
+      "type": "Image Crop Face",
+      "pos": [2300, 1850],
+      "size": [315, 126],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 101}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [501], "slot_index": 0},
+        {"name": "x", "type": "INT", "links": null},
+        {"name": "y", "type": "INT", "links": null},
+        {"name": "width", "type": "INT", "links": null},
+        {"name": "height", "type": "INT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "Image Crop Face"},
+      "widgets_values": [1.5, 0.5, "center", true]
+    },
+    {
+      "id": 502,
+      "type": "Image Crop Face",
+      "pos": [2300, 2000],
+      "size": [315, 126],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 102}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [502], "slot_index": 0},
+        {"name": "x", "type": "INT", "links": null},
+        {"name": "y", "type": "INT", "links": null},
+        {"name": "width", "type": "INT", "links": null},
+        {"name": "height", "type": "INT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "Image Crop Face"},
+      "widgets_values": [1.5, 0.5, "center", true]
+    },
+    {
+      "id": 503,
+      "type": "Image Crop Face",
+      "pos": [2300, 2150],
+      "size": [315, 126],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 103}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [503], "slot_index": 0},
+        {"name": "x", "type": "INT", "links": null},
+        {"name": "y", "type": "INT", "links": null},
+        {"name": "width", "type": "INT", "links": null},
+        {"name": "height", "type": "INT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "Image Crop Face"},
+      "widgets_values": [1.5, 0.5, "center", true]
+    },
+    {
+      "id": 504,
+      "type": "Image Crop Face",
+      "pos": [2300, 2300],
+      "size": [315, 126],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 104}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [504], "slot_index": 0},
+        {"name": "x", "type": "INT", "links": null},
+        {"name": "y", "type": "INT", "links": null},
+        {"name": "width", "type": "INT", "links": null},
+        {"name": "height", "type": "INT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "Image Crop Face"},
+      "widgets_values": [1.5, 0.5, "center", true]
+    },
+    {
+      "id": 510,
+      "type": "ImageUpscaleWithModel",
+      "pos": [2650, 1700],
+      "size": [241, 46],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 121},
+        {"name": "image", "type": "IMAGE", "link": 500}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [510], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ImageUpscaleWithModel"}
+    },
+    {
+      "id": 511,
+      "type": "ImageUpscaleWithModel",
+      "pos": [2650, 1850],
+      "size": [241, 46],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 122},
+        {"name": "image", "type": "IMAGE", "link": 501}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [511], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ImageUpscaleWithModel"}
+    },
+    {
+      "id": 512,
+      "type": "ImageUpscaleWithModel",
+      "pos": [2650, 2000],
+      "size": [241, 46],
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 123},
+        {"name": "image", "type": "IMAGE", "link": 502}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [512], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ImageUpscaleWithModel"}
+    },
+    {
+      "id": 513,
+      "type": "ImageUpscaleWithModel",
+      "pos": [2650, 2150],
+      "size": [241, 46],
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 124},
+        {"name": "image", "type": "IMAGE", "link": 503}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [513], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ImageUpscaleWithModel"}
+    },
+    {
+      "id": 514,
+      "type": "UpscaleModelLoader",
+      "pos": [2300, 2450],
+      "size": [315, 58],
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "outputs": [
+        {"name": "UPSCALE_MODEL", "type": "UPSCALE_MODEL", "links": [525, 526, 527, 528, 529], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "UpscaleModelLoader"},
+      "widgets_values": ["RealESRGAN_x2plus.pth"]
+    },
+    {
+      "id": 515,
+      "type": "ImageUpscaleWithModel",
+      "pos": [2650, 2300],
+      "size": [241, 46],
+      "flags": {},
+      "order": 56,
+      "mode": 0,
+      "inputs": [
+        {"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 525},
+        {"name": "image", "type": "IMAGE", "link": 504}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [515], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ImageUpscaleWithModel"}
+    },
+    {
+      "id": 520,
+      "type": "Image Analyze",
+      "pos": [3000, 1700],
+      "size": [400, 300],
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 510}
+      ],
+      "outputs": [
+        {"name": "analysis_text", "type": "STRING", "links": [520], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Analyze"},
+      "widgets_values": ["Detailed facial analysis: Eyes symmetrical and clear? Ears properly positioned? Facial features anatomically correct? Lighting natural and consistent?"]
+    },
+    {
+      "id": 521,
+      "type": "Image Analyze",
+      "pos": [3000, 2050],
+      "size": [400, 300],
+      "flags": {},
+      "order": 58,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 511}
+      ],
+      "outputs": [
+        {"name": "analysis_text", "type": "STRING", "links": [521], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Analyze"},
+      "widgets_values": ["Multi-face consistency check: All faces match training data? Lighting uniform across subjects? No anatomical inconsistencies?"]
+    },
+    {
+      "id": 522,
+      "type": "Image Analyze",
+      "pos": [3000, 2400],
+      "size": [400, 300],
+      "flags": {},
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 512}
+      ],
+      "outputs": [
+        {"name": "analysis_text", "type": "STRING", "links": [522], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Analyze"},
+      "widgets_values": ["Group validation: All personas anatomically correct? Hands/fingers natural? Extremities properly rendered? Background contextually appropriate?"]
+    },
+    {
+      "id": 523,
+      "type": "Image Analyze",
+      "pos": [3000, 2750],
+      "size": [400, 300],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 513}
+      ],
+      "outputs": [
+        {"name": "analysis_text", "type": "STRING", "links": [523], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Analyze"},
+      "widgets_values": ["Conversation scene validation: Natural expressions? Proper eye contact? Realistic body language? Environmental consistency?"]
+    },
+    {
+      "id": 524,
+      "type": "Image Analyze",
+      "pos": [3000, 3100],
+      "size": [400, 300],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 515}
+      ],
+      "outputs": [
+        {"name": "analysis_text", "type": "STRING", "links": [524], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Analyze"},
+      "widgets_values": ["Outdoor scene validation: Natural lighting consistency? Realistic shadows? Environmental interaction appropriate? No anatomical anomalies?"]
+    },
+    {
+      "id": 530,
+      "type": "SaveImage",
+      "pos": [3450, 1700],
+      "size": [315, 270],
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 510}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["VALIDATION_SINGLE_FACE_4X"]
+    },
+    {
+      "id": 531,
+      "type": "SaveImage",
+      "pos": [3450, 2050],
+      "size": [315, 270],
+      "flags": {},
+      "order": 63,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 511}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["VALIDATION_DUO_FACE_4X"]
+    },
+    {
+      "id": 532,
+      "type": "SaveImage",
+      "pos": [3450, 2400],
+      "size": [315, 270],
+      "flags": {},
+      "order": 64,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 512}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["VALIDATION_GROUP_FACE_4X"]
+    },
+    {
+      "id": 533,
+      "type": "SaveImage",
+      "pos": [3450, 2750],
+      "size": [315, 270],
+      "flags": {},
+      "order": 65,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 513}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["VALIDATION_CONVERSATION_FACE_4X"]
+    },
+    {
+      "id": 534,
+      "type": "SaveImage",
+      "pos": [3450, 3100],
+      "size": [315, 270],
+      "flags": {},
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 515}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["VALIDATION_OUTDOOR_FACE_4X"]
+    },
+    {
+      "id": 540,
+      "type": "Image Edge Detection Filter",
+      "pos": [3800, 1700],
+      "size": [315, 126],
+      "flags": {},
+      "order": 67,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 100}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [540], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Edge Detection Filter"},
+      "widgets_values": [150, 50, "canny"]
+    },
+    {
+      "id": 541,
+      "type": "Image Edge Detection Filter",
+      "pos": [3800, 1850],
+      "size": [315, 126],
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 101}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [541], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Edge Detection Filter"},
+      "widgets_values": [150, 50, "canny"]
+    },
+    {
+      "id": 542,
+      "type": "Image Edge Detection Filter",
+      "pos": [3800, 2000],
+      "size": [315, 126],
+      "flags": {},
+      "order": 69,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 102}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [542], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Edge Detection Filter"},
+      "widgets_values": [150, 50, "canny"]
+    },
+    {
+      "id": 543,
+      "type": "Image Edge Detection Filter",
+      "pos": [3800, 2150],
+      "size": [315, 126],
+      "flags": {},
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 103}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [543], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Edge Detection Filter"},
+      "widgets_values": [150, 50, "canny"]
+    },
+    {
+      "id": 544,
+      "type": "Image Edge Detection Filter",
+      "pos": [3800, 2300],
+      "size": [315, 126],
+      "flags": {},
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 104}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [544], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Image Edge Detection Filter"},
+      "widgets_values": [150, 50, "canny"]
+    },
+    {
+      "id": 550,
+      "type": "SaveImage",
+      "pos": [4200, 1700],
+      "size": [315, 270],
+      "flags": {},
+      "order": 72,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 540}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["EDGE_ANALYSIS_SINGLE"]
+    },
+    {
+      "id": 551,
+      "type": "SaveImage",
+      "pos": [4200, 1850],
+      "size": [315, 270],
+      "flags": {},
+      "order": 73,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 541}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["EDGE_ANALYSIS_DUO"]
+    },
+    {
+      "id": 552,
+      "type": "SaveImage",
+      "pos": [4200, 2000],
+      "size": [315, 270],
+      "flags": {},
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 542}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["EDGE_ANALYSIS_GROUP"]
+    },
+    {
+      "id": 553,
+      "type": "SaveImage",
+      "pos": [4200, 2150],
+      "size": [315, 270],
+      "flags": {},
+      "order": 75,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 543}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["EDGE_ANALYSIS_CONVERSATION"]
+    },
+    {
+      "id": 554,
+      "type": "SaveImage",
+      "pos": [4200, 2300],
+      "size": [315, 270],
+      "flags": {},
+      "order": 76,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 544}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["EDGE_ANALYSIS_OUTDOOR"]
+    },
+    {
+      "id": 580,
+      "type": "Note",
+      "pos": [50, 4350],
+      "size": [1200, 700],
+      "flags": {},
+      "order": 77,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["🔍 COMPREHENSIVE VALIDATION SYSTEM - ANATOMICAL & CONSISTENCY CHECKS:\n\n👁️ EYE VALIDATION (Nodes 500-510, 520, 530):\n• Face cropping isolates eye regions for detailed inspection\n• 4x upscaling reveals pupil alignment, iris details, sclera consistency\n• AI analysis checks: asymmetry, unnatural colors, artifacts, lighting reflection\n• Validation ensures both eyes match in size, position, and focus direction\n• Checks for: proper eyelid positioning, natural eye movement, realistic reflections\n\n👂 EAR VALIDATION (Integrated in face crop analysis):\n• Anatomical positioning relative to eye level and head angle\n• Shape consistency with persona reference images\n• Proper shadowing and lighting on ear cartilage\n• Size proportional to head and facial features\n• Validates ear lobe attachment, cartilage definition, inner ear visibility\n\n✋ HAND & FINGER VALIDATION (Edge Detection 540-544):\n• Edge detection highlights finger positioning and joint accuracy\n• Checks for correct finger count (exactly 5 per hand), natural poses\n• Validates thumb positioning, knuckle definition, palm proportions\n• Ensures no extra/missing digits, no unnatural bending or impossible angles\n• Checks fingernail consistency, skin texture, proper shadowing\n\n🦵 EXTREMITIES VALIDATION (Full body analysis 521-524):\n• Comprehensive analysis for arm and leg positioning\n• Joint accuracy at elbows, knees, ankles, wrists - proper articulation\n• Proportion validation against body size and anatomical standards\n• Natural pose and movement consistency across all limbs\n• Validates muscle definition, bone structure visibility, skin texture\n\n💡 LIGHTING VALIDATION (All analysis nodes):\n• Consistent light source direction across all subjects in scene\n• Shadow positioning matches lighting angle and intensity\n• Skin tone uniformity under same lighting conditions\n• No conflicting shadows or impossible lighting scenarios\n• Validates specular highlights, subsurface scattering, ambient occlusion\n\n🖼️ BACKGROUND & OBJECT VALIDATION (Contextual analysis):\n• Object placement and perspective accuracy relative to camera position\n• Background element consistency with scene context and time of day\n• No floating objects, impossible physics, or scale inconsistencies\n• Environmental lighting matches subject lighting direction and color temperature\n• Validates depth of field, atmospheric perspective, environmental interaction\n\n👥 CHARACTER CONSISTENCY VALIDATION (Multi-persona nodes 521, 522):\n• Multi-persona scenes checked for style consistency across all subjects\n• Facial feature accuracy compared to training references and LoRA data\n• Clothing, hair, accessory consistency with character definitions\n• Scale and proportion matching between characters in same scene\n• Validates interaction realism, eye contact accuracy, body language coherence"]
+    },
+    {
+      "id": 590,
+      "type": "Note",
+      "pos": [1300, 4350],
+      "size": [1000, 700],
+      "flags": {},
+      "order": 78,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["⚡ VALIDATION WORKFLOW PROCESSING PIPELINE:\n\n🔄 MULTI-STAGE VERIFICATION PROCESS:\n1. BASE GENERATION: Original images through VAE decode (nodes 50-54)\n2. FACE ISOLATION: Crop nodes (500-504) extract facial regions for micro-analysis\n3. DETAIL ENHANCEMENT: 4x upscaling (510-515) reveals fine anatomical details\n4. AI QUALITY ASSESSMENT: Analysis nodes (520-524) perform comprehensive evaluation\n5. EDGE STRUCTURE ANALYSIS: Detection nodes (540-544) reveal anatomical inconsistencies\n6. MULTI-FORMAT VALIDATION: Save validated images with detailed metadata\n\n🎯 SPECIFIC VALIDATION CRITERIA:\n\n👁️ EYE CHECKS:\n• Pupil roundness and centering • Iris color consistency • Sclera cleanliness\n• Eyelash definition and direction • Eyebrow hair texture • Eye socket depth\n• Tear duct accuracy • Corneal reflection realism • Eye size symmetry\n\n👂 EAR CHECKS:\n• Helix and antihelix definition • Tragus and antitragus positioning\n• Ear canal visibility • Lobe attachment type • Cartilage thickness\n• Ear-to-head angle • Size relative to facial features\n\n✋ HAND/FINGER CHECKS:\n• Digit count verification (5 per hand) • Joint articulation accuracy\n• Knuckle positioning • Thumb opposition capability • Palm lines\n• Fingernail shape and size • Skin texture consistency • Vein visibility\n\n🦵 EXTREMITY CHECKS:\n• Limb length proportions • Joint flexibility ranges • Muscle definition\n• Bone structure accuracy • Skin fold realism • Movement naturalness\n\n💡 LIGHTING CHECKS:\n• Single primary light source • Shadow direction consistency\n• Specular highlight placement • Color temperature uniformity\n• Ambient light contribution • Subsurface scattering accuracy\n\n🎨 QUALITY SCORING SYSTEM:\n• Anatomical Accuracy: 0-100% (must be >95% to pass)\n• Lighting Consistency: 0-100% (must be >90% to pass)\n• Character Fidelity: 0-100% (must be >92% to pass)\n• Background Coherence: 0-100% (must be >85% to pass)\n• Overall Realism: Composite score (must be >93% to pass)\n\n📊 OUTPUT ORGANIZATION:\n• Original scenes: ADAPTIVE_[SCENE_TYPE]\n• Facial validation: VALIDATION_[SCENE]_FACE_4X\n• Edge analysis: EDGE_ANALYSIS_[SCENE]\n• Quality reports: Embedded in analysis text outputs\n\n🚨 ITERATIVE IMPROVEMENT:\n• Failed validations trigger regeneration with corrective prompts\n• Analysis feedback incorporated into next generation cycle\n• Automatic quality gate enforcement prevents substandard outputs"]
+    },
+    {
+      "id": 600,
+      "type": "Note",
+      "pos": [2350, 4350],
+      "size": [1000, 500],
+      "flags": {},
+      "order": 79,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["🎯 VALIDATION SUCCESS CRITERIA & AUTOMATED QUALITY GATES:\n\n✅ PASS CONDITIONS (All must be met):\n\n👁️ EYE VALIDATION PASS:\n• Both eyes symmetrical within 2% size variance\n• Pupils correctly centered and round\n• Iris patterns natural and detailed\n• Sclera clean without artifacts\n• Proper corneal reflections\n• Eyelashes naturally directional\n• No floating eye anomalies\n\n👂 EAR VALIDATION PASS:\n• Positioned at correct eye-level\n• Anatomically accurate cartilage structure\n• Proper attachment to head\n• Natural shadowing and depth\n• Size proportional to face\n\n✋ HAND VALIDATION PASS:\n• Exactly 5 fingers per visible hand\n• Natural joint articulation\n• Proper thumb positioning\n• Realistic palm proportions\n• No extra/missing digits\n• Natural finger curvature\n\n🦵 EXTREMITY VALIDATION PASS:\n• Limbs properly proportioned\n• Joints bend naturally\n• No impossible angles\n• Muscle definition appropriate\n• Skin texture consistent\n\n💡 LIGHTING VALIDATION PASS:\n• Single consistent light source\n• Shadows match light direction\n• No impossible lighting scenarios\n• Color temperature uniform\n• Natural highlight placement\n\n🖼️ BACKGROUND VALIDATION PASS:\n• Objects properly scaled\n• Perspective geometrically correct\n• No floating elements\n• Environmental lighting consistent\n• Context appropriate for scene\n\n👥 CHARACTER CONSISTENCY PASS:\n• All personas match training data\n• Style consistent across subjects\n• Interaction poses natural\n• Scale relationships correct\n• No character blending artifacts\n\n🚫 AUTOMATIC REJECTION TRIGGERS:\n• Anatomical score below 95%\n• Extra/missing body parts\n• Impossible lighting conditions\n• Character identity inconsistency\n• Severe artifacts or distortions\n• Background context violations\n\n🔄 REGENERATION PROTOCOL:\n• Failed images automatically flagged\n• Corrective prompts generated\n• Quality feedback incorporated\n• Maximum 3 regeneration attempts\n• Human review required after 3 failures"]
+    },
+    {
+      "id": 700,
+      "type": "Load Image Batch",
+      "pos": [50, 3500],
+      "size": [400, 400],
+      "flags": {},
+      "order": 80,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [700], "slot_index": 0},
+        {"name": "FILENAME_TEXT", "type": "STRING", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "WAS_Load_Image_Batch"},
+      "widgets_values": ["reference_images/persona1/face_reference/", "image", 0, "Batch"]
+    },
+    {
+      "id": 701,
+      "type": "Load Image Batch",
+      "pos": [500, 3500],
+      "size": [400, 400],
+      "flags": {},
+      "order": 81,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [701], "slot_index": 0},
+        {"name": "FILENAME_TEXT", "type": "STRING", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "WAS_Load_Image_Batch"},
+      "widgets_values": ["reference_images/persona1/body_reference/", "image", 0, "Batch"]
+    },
+    {
+      "id": 702,
+      "type": "Load Image Batch",
+      "pos": [950, 3500],
+      "size": [400, 400],
+      "flags": {},
+      "order": 82,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [702], "slot_index": 0},
+        {"name": "FILENAME_TEXT", "type": "STRING", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "WAS_Load_Image_Batch"},
+      "widgets_values": ["reference_images/persona2/face_reference/", "image", 0, "Batch"]
+    },
+    {
+      "id": 703,
+      "type": "Load Image Batch",
+      "pos": [1400, 3500],
+      "size": [400, 400],
+      "flags": {},
+      "order": 83,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [703], "slot_index": 0},
+        {"name": "FILENAME_TEXT", "type": "STRING", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "WAS_Load_Image_Batch"},
+      "widgets_values": ["reference_images/persona3/face_reference/", "image", 0, "Batch"]
+    },
+    {
+      "id": 710,
+      "type": "Note",
+      "pos": [50, 3950],
+      "size": [400, 200],
+      "flags": {},
+      "order": 84,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["🔍 REFERENCE VALIDATION PLACEHOLDER:\n\nFor reference image comparison:\n1. Load reference images from face_reference/ folders\n2. Manually compare generated faces with reference images\n3. Use generated validation images for quality assessment\n4. Adjust LoRA strengths based on visual comparison\n\nFuture enhancement: Custom comparison node development"]
+    },
+    {
+      "id": 711,
+      "type": "Note", 
+      "pos": [500, 3950],
+      "size": [400, 200],
+      "flags": {},
+      "order": 85,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["🎯 VALIDATION WORKFLOW:\n\n1. Generated images saved with prefixes:\n   - ADAPTIVE_SINGLE_PORTRAIT\n   - ADAPTIVE_DUO_PORTRAIT\n   - ADAPTIVE_GROUP_PHOTO\n   - VALIDATION_*_FACE_4X (cropped faces)\n   - EDGE_ANALYSIS_* (edge detection)\n\n2. Manual comparison against reference images\n3. Adjust LoRA strengths if needed\n4. Regenerate if quality insufficient"]
+    },
+    {
+      "id": 712,
+      "type": "Note",
+      "pos": [950, 3950],
+      "size": [400, 200],
+      "flags": {},
+      "order": 86,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["📊 QUALITY METRICS:\n\n✅ Visual Inspection Points:\n• Face similarity to reference images\n• Eye alignment and clarity\n• Facial feature consistency\n• Skin texture realism\n• Lighting consistency\n• Anatomical correctness\n\nUse upscaled face crops for detailed inspection"]
+    },
+    {
+      "id": 740,
+      "type": "Note",
+      "pos": [50, 4550],
+      "size": [1200, 800],
+      "flags": {},
+      "order": 93,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["📸 REFERENCE IMAGE REQUIREMENTS & VALIDATION:\n\n🎯 MANDATORY REFERENCE IMAGE STRUCTURE:\n\n📂 reference_images/persona[X]/\n├── 📂 face_reference/          (REQUIRED - Clear facial features)\n│   ├── front_face_clear.jpg    (Eyes, nose, mouth, brow visible)\n│   ├── face_3quarter_left.jpg  (Profile showing ear, jawline)\n│   ├── face_3quarter_right.jpg (Profile showing ear, jawline)\n│   ├── face_profile_left.jpg   (Full side profile)\n│   ├── face_profile_right.jpg  (Full side profile)\n│   ├── eyes_closeup.jpg        (Detailed eye region)\n│   ├── smile_expression.jpg    (Natural smile showing teeth)\n│   └── neutral_expression.jpg  (Relaxed, natural expression)\n├── 📂 body_reference/          (REQUIRED - Full body poses)\n│   ├── body_front_full.jpg     (Front view, arms at sides)\n│   ├── body_back_full.jpg      (Back view, natural pose)\n│   ├── body_left_side.jpg      (Left profile, full body)\n│   ├── body_right_side.jpg     (Right profile, full body)\n│   ├── sitting_pose.jpg        (Natural sitting position)\n│   ├── walking_pose.jpg        (Mid-stride, natural movement)\n│   └── hands_detail.jpg        (Clear hand/finger reference)\n└── 📂 training/                (Generated from above)\n    └── processed/              (Auto-generated training data)\n\n🔍 VALIDATION PROCESS:\n1. Reference images automatically loaded from face_reference/ and body_reference/\n2. Generated faces compared against face_reference/ using structural similarity\n3. Body proportions validated against body_reference/ images\n4. Similarity scores calculated (target: >0.85 for faces, >0.75 for bodies)\n5. Difference images saved showing areas needing improvement\n6. Failed validations trigger regeneration with reference-guided prompts\n\n✅ IMAGE QUALITY REQUIREMENTS:\n• Resolution: Minimum 1024x1024 for faces, 1024x1536 for full body\n• Lighting: Natural, even lighting without harsh shadows\n• Focus: Sharp focus on key features (eyes, facial structure, body)\n• Background: Plain or simple backgrounds preferred\n• Clothing: Variety of outfits to train clothing consistency\n• Expressions: Multiple expressions to capture personality range\n\n📊 SIMILARITY SCORING:\n• 0.90-1.00: Excellent match (persona highly recognizable)\n• 0.80-0.89: Good match (persona recognizable with minor differences)\n• 0.70-0.79: Acceptable match (persona recognizable but needs improvement)\n• 0.60-0.69: Poor match (significant differences, regeneration recommended)\n• Below 0.60: Failed match (automatic regeneration triggered)\n\n🚨 AUTOMATIC QUALITY GATES:\n• Face similarity below 0.75: Regenerate with face-focused prompts\n• Body proportion score below 0.70: Regenerate with anatomy-focused prompts\n• Overall realism score below 0.80: Apply additional realism LoRAs\n• Expression mismatch: Adjust emotional conditioning in prompts"]
+    },
+    {
+      "id": 400,
+      "type": "Note",
+      "pos": [
+        50,
+        3800
+      ],
+      "size": [
+        1000,
+        500
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "\ud83d\ude80 ADAPTIVE COMMUNITY WORKFLOW - BATCH TRAINING GUIDE:\n\n\ud83d\udcc1 STEP 1 - ORGANIZE REFERENCE IMAGES BY PERSONA:\nCreate folders for each persona and upload 20-30 high-quality photos:\n\n\ud83d\udcc2 reference_images/\n\u251c\u2500\u2500 \ud83d\udcc2 persona1/  (20-30 images of first person)\n\u2502   \u251c\u2500\u2500 001.jpg, 002.jpg, 003.jpg...\n\u2502   \u2514\u2500\u2500 Different angles, expressions, lighting\n\u251c\u2500\u2500 \ud83d\udcc2 persona2/  (20-30 images of second person) \n\u2502   \u251c\u2500\u2500 001.jpg, 002.jpg, 003.jpg...\n\u2502   \u2514\u2500\u2500 Various poses, close-ups, full body\n\u2514\u2500\u2500 \ud83d\udcc2 persona3/  (20-30 images of third person)\n    \u251c\u2500\u2500 001.jpg, 002.jpg, 003.jpg...\n    \u2514\u2500\u2500 Diverse scenarios, lighting conditions\n\n\ud83c\udfd7\ufe0f STEP 2 - AUTOMATIC ADAPTATION:\n\u2705 Workflow detects how many personas have images\n\u2705 Automatically enables appropriate scenarios:\n   \u2022 1 Persona: Single portraits, individual videos\n   \u2022 2 Personas: Duo scenes, pair interactions\n   \u2022 3 Personas: Full group scenes, community videos\n\n\u26a1 STEP 3 - BATCH TRAINING PROCESS:\n1. LoadImageBatch nodes (300-302) automatically load all images\n2. GetImageSizeAndCount nodes detect active personas\n3. Use external training for each active persona:\n   ./scripts/train_lora.sh persona1 1e-4 10000\n   ./scripts/train_lora.sh persona2 1e-4 10000\n   ./scripts/train_lora.sh persona3 1e-4 10000\n\n\ud83c\udfaf STEP 4 - LOAD TRAINED MODELS:\n1. Update LoraLoader nodes (10-12) with trained .safetensors\n2. Adjust strengths based on number of active personas:\n   \u2022 Single: 0.8-0.9 (higher strength)\n   \u2022 Duo: 0.7-0.8 (balanced)\n   \u2022 Group: 0.6-0.7 (prevent face blending)\n\n\ud83c\udfac ADAPTIVE OUTPUT:\n\u2022 Single Persona: 3 portraits + 1 video (walking)\n\u2022 Duo Personas: 4 scenes + 2 videos (conversation, activities)\n\u2022 Full Group: 5 scenes + 2 videos (group photos, community)\n\n\ud83d\udca1 QUALITY TIPS:\n\u2022 More reference images = better persona capture (aim for 25+ per person)\n\u2022 Include variety: headshots, full body, different expressions\n\u2022 Consistent lighting across reference set improves results\n\u2022 Test single personas before multi-persona scenes"
+      ]
+    },
+    {
+      "id": 401,
+      "type": "Note",
+      "pos": [
+        1100,
+        3800
+      ],
+      "size": [
+        800,
+        500
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "\ud83d\udcf8 BATCH IMAGE UPLOAD SYSTEM:\n\n\ud83d\udd27 HOW TO USE BATCH LOADING:\n\n1. CREATE FOLDER STRUCTURE:\n   reference_images/persona1/\n   reference_images/persona2/\n   reference_images/persona3/\n\n2. UPLOAD 20-30 IMAGES PER FOLDER:\n   \u2022 Use descriptive filenames: front_view_001.jpg\n   \u2022 Include variety: close-up, medium, full body\n   \u2022 Different expressions: smiling, serious, laughing\n   \u2022 Various lighting: natural, studio, outdoor\n   \u2022 Multiple angles: front, 3/4, profile\n\n3. LOADIMAGEBATCH NODES AUTOMATICALLY:\n   \u2705 Load all images from each folder\n   \u2705 Detect empty folders (no persona)\n   \u2705 Count images for quality validation\n   \u2705 Process in batch for training preparation\n\n\ud83c\udfaf ADAPTIVE PERSONA DETECTION:\n\nThe workflow automatically detects:\n\ud83d\udcca GetImageSizeAndCount nodes check:\n   \u2022 persona1/ folder \u2192 X images found\n   \u2022 persona2/ folder \u2192 Y images found  \n   \u2022 persona3/ folder \u2192 Z images found\n\n\ud83e\udd16 SMART WORKFLOW ROUTING:\n   IF only persona1 has images:\n     \u2192 Generate single portraits\n     \u2192 Individual video sequences\n     \u2192 Higher LoRA strength (0.85)\n   \n   IF persona1 + persona2 have images:\n     \u2192 Generate duo scenes\n     \u2192 Pair conversation videos\n     \u2192 Balanced LoRA strength (0.75)\n   \n   IF all 3 personas have images:\n     \u2192 Generate full community scenes\n     \u2192 Group interaction videos\n     \u2192 Conservative LoRA strength (0.65)\n\n\u26a1 EFFICIENCY BENEFITS:\n\u2022 No manual node management\n\u2022 No unused computational resources\n\u2022 Optimal prompts for available personas\n\u2022 Automatic strength balancing\n\u2022 Smart scene selection\n\n\ud83d\udcbe RECOMMENDED UPLOAD STRATEGY:\n1. Start with 1 persona (25+ images)\n2. Train and validate quality\n3. Add 2nd persona if desired\n4. Add 3rd persona for full community\n5. Workflow adapts automatically each time!"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      0,
+      200,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      1,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      4,
+      1,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      5,
+      1,
+      1,
+      10,
+      1,
+      "CLIP"
+    ],
+    [
+      6,
+      1,
+      1,
+      11,
+      1,
+      "CLIP"
+    ],
+    [
+      7,
+      1,
+      1,
+      12,
+      1,
+      "CLIP"
+    ],
+    [
+      8,
+      1,
+      1,
+      13,
+      1,
+      "CLIP"
+    ],
+    [
+      9,
+      1,
+      2,
+      50,
+      1,
+      "VAE"
+    ],
+    [
+      10,
+      1,
+      2,
+      51,
+      1,
+      "VAE"
+    ],
+    [
+      11,
+      1,
+      2,
+      52,
+      1,
+      "VAE"
+    ],
+    [
+      12,
+      1,
+      2,
+      53,
+      1,
+      "VAE"
+    ],
+    [
+      13,
+      1,
+      2,
+      54,
+      1,
+      "VAE"
+    ],
+    [
+      14,
+      1,
+      2,
+      203,
+      1,
+      "VAE"
+    ],
+    [
+      15,
+      1,
+      2,
+      204,
+      1,
+      "VAE"
+    ],
+    [
+      16,
+      1,
+      2,
+      55,
+      1,
+      "VAE"
+    ],
+    [
+      17,
+      1,
+      2,
+      56,
+      1,
+      "VAE"
+    ],
+    [
+      18,
+      1,
+      2,
+      57,
+      1,
+      "VAE"
+    ],
+    [
+      19,
+      1,
+      2,
+      58,
+      1,
+      "VAE"
+    ],
+    [
+      20,
+      1,
+      2,
+      59,
+      1,
+      "VAE"
+    ],
+    [
+      300,
+      300,
+      0,
+      310,
+      0,
+      "IMAGE"
+    ],
+    [
+      301,
+      301,
+      0,
+      311,
+      0,
+      "IMAGE"
+    ],
+    [
+      302,
+      302,
+      0,
+      312,
+      0,
+      "IMAGE"
+    ],
+    [
+      310,
+      310,
+      2,
+      320,
+      0,
+      "INT"
+    ],
+    [
+      311,
+      311,
+      2,
+      320,
+      1,
+      "INT"
+    ],
+    [
+      312,
+      312,
+      2,
+      320,
+      2,
+      "INT"
+    ],
+    [
+      21,
+      10,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      22,
+      10,
+      0,
+      41,
+      0,
+      "MODEL"
+    ],
+    [
+      23,
+      10,
+      0,
+      42,
+      0,
+      "MODEL"
+    ],
+    [
+      24,
+      10,
+      1,
+      11,
+      1,
+      "CLIP"
+    ],
+    [
+      25,
+      10,
+      1,
+      21,
+      0,
+      "CLIP"
+    ],
+    [
+      26,
+      10,
+      1,
+      22,
+      0,
+      "CLIP"
+    ],
+    [
+      27,
+      11,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      28,
+      11,
+      0,
+      43,
+      0,
+      "MODEL"
+    ],
+    [
+      29,
+      11,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      30,
+      11,
+      1,
+      12,
+      1,
+      "CLIP"
+    ],
+    [
+      31,
+      11,
+      1,
+      23,
+      0,
+      "CLIP"
+    ],
+    [
+      32,
+      11,
+      1,
+      24,
+      0,
+      "CLIP"
+    ],
+    [
+      33,
+      12,
+      0,
+      40,
+      0,
+      "MODEL"
+    ],
+    [
+      34,
+      12,
+      0,
+      41,
+      0,
+      "MODEL"
+    ],
+    [
+      35,
+      12,
+      0,
+      42,
+      0,
+      "MODEL"
+    ],
+    [
+      36,
+      12,
+      0,
+      43,
+      0,
+      "MODEL"
+    ],
+    [
+      37,
+      12,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      38,
+      12,
+      1,
+      20,
+      0,
+      "CLIP"
+    ],
+    [
+      39,
+      12,
+      1,
+      21,
+      0,
+      "CLIP"
+    ],
+    [
+      40,
+      12,
+      1,
+      22,
+      0,
+      "CLIP"
+    ],
+    [
+      41,
+      12,
+      1,
+      23,
+      0,
+      "CLIP"
+    ],
+    [
+      42,
+      12,
+      1,
+      24,
+      0,
+      "CLIP"
+    ],
+    [
+      43,
+      12,
+      1,
+      25,
+      0,
+      "CLIP"
+    ],
+    [
+      44,
+      12,
+      1,
+      26,
+      0,
+      "CLIP"
+    ],
+    [
+      45,
+      12,
+      1,
+      27,
+      0,
+      "CLIP"
+    ],
+    [
+      51,
+      20,
+      0,
+      40,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      52,
+      21,
+      0,
+      41,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      53,
+      22,
+      0,
+      42,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      54,
+      23,
+      0,
+      43,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      55,
+      24,
+      0,
+      44,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      56,
+      25,
+      0,
+      201,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      57,
+      26,
+      0,
+      202,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      60,
+      27,
+      0,
+      40,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      61,
+      27,
+      0,
+      41,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      62,
+      27,
+      0,
+      42,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      63,
+      27,
+      0,
+      43,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      64,
+      27,
+      0,
+      44,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      65,
+      27,
+      0,
+      201,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      66,
+      27,
+      0,
+      202,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      70,
+      30,
+      0,
+      40,
+      3,
+      "LATENT"
+    ],
+    [
+      71,
+      30,
+      0,
+      41,
+      3,
+      "LATENT"
+    ],
+    [
+      72,
+      30,
+      0,
+      42,
+      3,
+      "LATENT"
+    ],
+    [
+      73,
+      30,
+      0,
+      43,
+      3,
+      "LATENT"
+    ],
+    [
+      74,
+      30,
+      0,
+      44,
+      3,
+      "LATENT"
+    ],
+    [
+      75,
+      31,
+      0,
+      201,
+      3,
+      "LATENT"
+    ],
+    [
+      76,
+      31,
+      0,
+      202,
+      3,
+      "LATENT"
+    ],
+    [
+      80,
+      200,
+      0,
+      201,
+      0,
+      "MODEL"
+    ],
+    [
+      81,
+      200,
+      0,
+      202,
+      0,
+      "MODEL"
+    ],
+    [
+      90,
+      40,
+      0,
+      50,
+      0,
+      "LATENT"
+    ],
+    [
+      91,
+      41,
+      0,
+      51,
+      0,
+      "LATENT"
+    ],
+    [
+      92,
+      42,
+      0,
+      52,
+      0,
+      "LATENT"
+    ],
+    [
+      93,
+      43,
+      0,
+      53,
+      0,
+      "LATENT"
+    ],
+    [
+      94,
+      44,
+      0,
+      54,
+      0,
+      "LATENT"
+    ],
+    [
+      95,
+      201,
+      0,
+      203,
+      0,
+      "LATENT"
+    ],
+    [
+      96,
+      202,
+      0,
+      204,
+      0,
+      "LATENT"
+    ],
+    [
+      100,
+      50,
+      0,
+      60,
+      0,
+      "IMAGE"
+    ],
+    [
+      101,
+      51,
+      0,
+      61,
+      0,
+      "IMAGE"
+    ],
+    [
+      102,
+      52,
+      0,
+      62,
+      0,
+      "IMAGE"
+    ],
+    [
+      103,
+      53,
+      0,
+      63,
+      0,
+      "IMAGE"
+    ],
+    [
+      104,
+      54,
+      0,
+      64,
+      0,
+      "IMAGE"
+    ],
+    [
+      105,
+      203,
+      0,
+      205,
+      0,
+      "IMAGE"
+    ],
+    [
+      106,
+      204,
+      0,
+      206,
+      0,
+      "IMAGE"
+    ],
+    [
+      110,
+      50,
+      0,
+      110,
+      1,
+      "IMAGE"
+    ],
+    [
+      120,
+      100,
+      0,
+      110,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      130,
+      110,
+      0,
+      150,
+      0,
+      "IMAGE"
+    ],
+    [
+      500,
+      500,
+      0,
+      510,
+      1,
+      "IMAGE"
+    ],
+    [
+      501,
+      501,
+      0,
+      511,
+      1,
+      "IMAGE"
+    ],
+    [
+      502,
+      502,
+      0,
+      512,
+      1,
+      "IMAGE"
+    ],
+    [
+      503,
+      503,
+      0,
+      513,
+      1,
+      "IMAGE"
+    ],
+    [
+      504,
+      504,
+      0,
+      515,
+      1,
+      "IMAGE"
+    ],
+    [
+      510,
+      510,
+      0,
+      520,
+      0,
+      "IMAGE"
+    ],
+    [
+      511,
+      511,
+      0,
+      521,
+      0,
+      "IMAGE"
+    ],
+    [
+      512,
+      512,
+      0,
+      522,
+      0,
+      "IMAGE"
+    ],
+    [
+      513,
+      513,
+      0,
+      523,
+      0,
+      "IMAGE"
+    ],
+    [
+      515,
+      515,
+      0,
+      524,
+      0,
+      "IMAGE"
+    ],
+    [
+      510,
+      510,
+      0,
+      530,
+      0,
+      "IMAGE"
+    ],
+    [
+      511,
+      511,
+      0,
+      531,
+      0,
+      "IMAGE"
+    ],
+    [
+      512,
+      512,
+      0,
+      532,
+      0,
+      "IMAGE"
+    ],
+    [
+      513,
+      513,
+      0,
+      533,
+      0,
+      "IMAGE"
+    ],
+    [
+      515,
+      515,
+      0,
+      534,
+      0,
+      "IMAGE"
+    ],
+    [
+      520,
+      520,
+      0,
+      530,
+      1,
+      "STRING"
+    ],
+    [
+      521,
+      521,
+      0,
+      531,
+      1,
+      "STRING"
+    ],
+    [
+      522,
+      522,
+      0,
+      532,
+      1,
+      "STRING"
+    ],
+    [
+      523,
+      523,
+      0,
+      533,
+      1,
+      "STRING"
+    ],
+    [
+      524,
+      524,
+      0,
+      534,
+      1,
+      "STRING"
+    ],
+    [
+      540,
+      540,
+      0,
+      550,
+      0,
+      "IMAGE"
+    ],
+    [
+      541,
+      541,
+      0,
+      551,
+      0,
+      "IMAGE"
+    ],
+    [
+      542,
+      542,
+      0,
+      552,
+      0,
+      "IMAGE"
+    ],
+    [
+      543,
+      543,
+      0,
+      553,
+      0,
+      "IMAGE"
+    ],
+    [
+      544,
+      544,
+      0,
+      554,
+      0,
+      "IMAGE"
+    ],
+    [
+      121,
+      100,
+      0,
+      510,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      122,
+      100,
+      0,
+      511,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      123,
+      100,
+      0,
+      512,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      124,
+      100,
+      0,
+      513,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      525,
+      514,
+      0,
+      515,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      46,
+      13,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      51,
+      13,
+      1,
+      14,
+      1,
+      "CLIP"
+    ],
+    [
+      56,
+      14,
+      0,
+      15,
+      0,
+      "MODEL"
+    ],
+    [
+      61,
+      14,
+      1,
+      15,
+      1,
+      "CLIP"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
